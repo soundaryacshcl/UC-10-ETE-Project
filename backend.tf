@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket       = "terraform-hcl-usecases"
-    key          = "usecase8/statefile.tfstate"
-    region       = "ap-south-1"
+    bucket       = "mybucket-name-uc-10"
+    key          = "usecase10/statefile.tfstate"
+    region       = "us-east-1"
     encrypt      = true
     use_lockfile = true
   }

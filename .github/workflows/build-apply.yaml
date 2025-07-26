@@ -15,8 +15,8 @@ permissions:
   pull-requests: write
 
 env:
-  AWS_REGION: ap-south-1
-  AWS_ROLE_ARN: arn:aws:iam::436450225331:role/oidc-assume-role 
+  AWS_REGION: us-east-1
+  AWS_ROLE_ARN: arn:aws:iam::637423192029:role/oidc-assume-role 
 
 jobs:
   detect-changes:
