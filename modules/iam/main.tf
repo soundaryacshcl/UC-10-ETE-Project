@@ -107,17 +107,45 @@ resource "aws_iam_role" "cloudtrail_logging" {
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
-    Statement = [{
-      Effect = "Allow",
-      Principal = {
-        Service = "cloudtrail.amazonaws.com"
-      },
-      Action = "sts:AssumeRole"
-    }]
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Service = "cloudtrail.amazonaws.com"
+        },
+        Action = "sts:AssumeRole"
+      }
+    ]
   })
+
+  tags = {
+    Name = "cloudtrail-cloudwatch-role"
+  }
 }
 
-resource "aws_iam_role_policy_attachment" "cloudtrail_policy" {
-  role       = aws_iam_role.cloudtrail_logging.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCloudTrailFullAccess"
+resource "aws_iam_role_policy" "cloudtrail_cloudwatch" {
+  name = "cloudtrail-cloudwatch-policy"
+  role = aws_iam_role.cloudtrail_logging.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "logs:DescribeLogGroups",
+          "logs:CreateLogGroup"
+        ],
+        Resource = "*"
+      }
+    ]
+  })
 }
