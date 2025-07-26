@@ -59,15 +59,20 @@ module "cloudwatch" {
 }
 
 module "cloudtrail" {
-  source = "./modules/cloudtrail"
+  source           = "./modules/cloudtrail"
+  name             = "uc10-cloudtrail"
+  s3_bucket_name   = "uc10-cloudtrail-logs"  # ✅ manually created bucket
 
-  name                    = "uc10-cloudtrail"
-  s3_bucket_name          = module.cloudtrail_logs.bucket_name
-  cloudwatch_log_group_arn = aws_cloudwatch_log_group.cloudtrail_logs.arn
-  cloudwatch_role_arn     = aws_iam_role.cloudtrail_logging.arn
-  kms_key_id              = aws_kms_key.cloudtrail_kms.arn
+  # If you are not sending logs to CloudWatch, pass empty strings
+  cloudwatch_log_group_arn = ""
+  cloudwatch_role_arn      = ""
+
+  # If not using KMS, pass empty string
+  kms_key_id = ""
+
   tags = {
-    Name        = "uc10-cloudtrail"
     Environment = "production"
+    Name        = "uc10-cloudtrail"
   }
 }
+

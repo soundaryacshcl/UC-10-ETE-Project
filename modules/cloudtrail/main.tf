@@ -9,22 +9,3 @@ resource "aws_cloudtrail" "this" {
   kms_key_id                    = var.kms_key_id
   tags                          = var.tags
 }
-
-
-
-resource "aws_s3_bucket" "cloudtrail_logs" {
-  bucket = "uc10-cloudtrail-logs"
-  acl    = "private"
-
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-}
