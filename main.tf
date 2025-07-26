@@ -57,3 +57,17 @@ module "cloudwatch" {
   environment     = var.environment
   ecs_cluster_name = module.ecs.cluster_name
 }
+
+module "cloudtrail" {
+  source = "./modules/cloudtrail"
+
+  name                    = "uc10-cloudtrail"
+  s3_bucket_name          = module.cloudtrail_logs.bucket_name
+  cloudwatch_log_group_arn = aws_cloudwatch_log_group.cloudtrail_logs.arn
+  cloudwatch_role_arn     = aws_iam_role.cloudtrail_logging.arn
+  kms_key_id              = aws_kms_key.cloudtrail_kms.arn
+  tags = {
+    Name        = "uc10-cloudtrail"
+    Environment = "production"
+  }
+}
