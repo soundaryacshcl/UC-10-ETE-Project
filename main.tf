@@ -59,20 +59,18 @@ module "cloudwatch" {
 }
 
 module "cloudtrail" {
-  source           = "./modules/cloudtrail"
-  name             = "uc10-cloudtrail"
-  s3_bucket_name   = "uc10-cloudtrail-logs"  # ✅ manually created bucket
-
-  # If you are not sending logs to CloudWatch, pass empty strings
-  cloudwatch_log_group_arn = ""
-  cloudwatch_role_arn      = ""
-
-  # If not using KMS, pass empty string
-  kms_key_id = ""
-
-  tags = {
-    Environment = "production"
-    Name        = "uc10-cloudtrail"
-  }
+  source                 = "./modules/cloudtrail"
+  project_name           = var.project_name
+  s3_bucket_name         = "${var.project_name}-${var.environment}-cloudtrail-logs"
+  enable_cloudwatch_logs = true
+  log_group_name         = "/aws/cloudtrail/${var.project_name}-${var.environment}"
 }
+
+module "sns_alert" {
+  source          = "./modules/sns_alert"
+  project_name    = var.project_name
+  log_group_name  = "/aws/cloudtrail/${var.project_name}-${var.environment}"
+  email_endpoint  = "soundaryacshcl@gmail.com" # <- Replace with your email
+}
+
 

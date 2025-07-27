@@ -1,30 +1,21 @@
-variable "name" {
-  description = "CloudTrail name"
+variable "project_name" {
+  description = "Name of the project"
   type        = string
 }
 
 variable "s3_bucket_name" {
-  description = "S3 bucket for CloudTrail logs"
+  description = "S3 bucket to store CloudTrail logs"
   type        = string
 }
 
-variable "cloudwatch_log_group_arn" {
-  description = "CloudWatch Logs group ARN"
-  type        = string
+variable "enable_cloudwatch_logs" {
+  description = "Enable CloudWatch logging integration"
+  type        = bool
+  default     = false
 }
 
-variable "cloudwatch_role_arn" {
-  description = "IAM role ARN that allows CloudTrail to publish to CloudWatch"
+variable "log_group_name" {
+  description = "Custom name for CloudWatch log group (optional)"
   type        = string
-}
-
-variable "kms_key_id" {
-  description = "KMS key ID for encrypting CloudTrail logs"
-  type        = string
-}
-
-variable "tags" {
-  description = "Tags to apply to CloudTrail"
-  type        = map(string)
-  default     = {}
+  default     = ""
 }
