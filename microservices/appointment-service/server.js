@@ -8,7 +8,8 @@ const express = require('express');
     let appointments = [
       { id: '1', patientId: '1', date: '2023-06-15', time: '10:00', doctor: 'Dr. Smith' },
       { id: '2', patientId: '2', date: '2023-06-16', time: '14:30', doctor: 'Dr. Johnson' },
-      { id: '3', patientId: '3', date: '2023-06-17', time: '09:00', doctor: 'Dr. Lee' }
+      { id: '3', patientId: '3', date: '2023-06-17', time: '09:00', doctor: 'Dr. Lee' },
+      { id: '4', patientId: '4', date: '2023-06-17', time: '09:00', doctor: 'Dr. Goo' }
     ];
     
     app.get('/health', (req, res) => {
