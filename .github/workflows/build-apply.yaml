@@ -16,7 +16,7 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  AWS_ROLE_ARN: arn:aws:iam::905418475271:role/oidc-assume-role 
+  AWS_ROLE_ARN: arn:aws:iam::058264529949:role/oidc-assume-role 
 
 jobs:
   detect-changes:
