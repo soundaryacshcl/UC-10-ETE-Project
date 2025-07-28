@@ -75,7 +75,7 @@ module "sns_alert" {
 
 module "cloudfront" {
  source         = "./modules/cloudfront"
- alb_dns_name   = module.alb.lb_dns_name  # Replace with your ALB output
+ alb_dns_name   = module.alb.alb_dns_name  # Replace with your ALB output
  project_name   = var.project_name
  environment    = var.environment
 }
