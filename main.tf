@@ -73,10 +73,5 @@ module "sns_alert" {
   email_endpoint  = "soundaryacshcl@gmail.com" # <- Replace with your email
 }
 
-module "cloudfront" {
- source         = "./modules/cloudfront"
- alb_dns_name   = module.alb.alb_dns_name  # Replace with your ALB output
- project_name   = var.project_name
- environment    = var.environment
-}
+
 
