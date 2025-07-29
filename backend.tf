@@ -4,7 +4,7 @@ terraform {
     key          = "usecase10/statefile.tfstate"
     region       = "us-east-1"
     encrypt      = true
-    use_lockfile = true
+    use_lockfile = false
   }
 }
 
