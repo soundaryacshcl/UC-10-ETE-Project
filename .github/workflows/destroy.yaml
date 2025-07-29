@@ -23,7 +23,7 @@ jobs:
     
     env:
       AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
-      AWS_ROLE_ARN: arn:aws:iam::767397700844:role/oidc-assume-role
+      AWS_ROLE_ARN: arn:aws:iam::730335231373:role/oidc-assume-role
 
     defaults:
       run:
